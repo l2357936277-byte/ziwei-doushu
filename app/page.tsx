@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import StarField from '@/components/StarField';
 import { useTheme, type Theme } from '@/components/ThemeProvider';
 import AnnouncementModal from '@/components/AnnouncementModal';
+import { BASE_PATH } from '@/lib/basePath';
 
 // ─── 滚动入场 wrapper ────────────────────────────────────
 function FadeIn({
@@ -1180,9 +1181,9 @@ export default function HomePage() {
             不构成任何医疗、投资、法律或重大决策建议。
           </p>
           <p className="text-[10px] tracking-wider" style={{ color: c.footerText }}>
-            <a href="/terms" style={{ color: c.footerText, textDecoration: 'underline' }}>服务条款</a>
+            <a href={BASE_PATH + "/terms"} style={{ color: c.footerText, textDecoration: 'underline' }}>服务条款</a>
             {' · '}
-            <a href="/privacy" style={{ color: c.footerText, textDecoration: 'underline' }}>隐私政策</a>
+            <a href={BASE_PATH + "/privacy"} style={{ color: c.footerText, textDecoration: 'underline' }}>隐私政策</a>
           </p>
         </div>
       </footer>

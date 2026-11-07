@@ -55,9 +55,8 @@ export default function KnowledgeHomePage() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
           {ALL_STARS.map(star => (
-            <Link
+            <div
               key={star}
-              href={`/knowledge/${STAR_TO_SLUG[star]}/overview`}
               style={{
                 display: 'block',
                 padding: '14px 10px',
@@ -66,14 +65,12 @@ export default function KnowledgeHomePage() {
                 borderRadius: '10px',
                 textDecoration: 'none',
                 textAlign: 'center',
-                transition: 'all 0.2s',
               }}
-              className="hover:shadow-md hover:border-amber-400"
             >
               <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--tx-0)', letterSpacing: '0.15em' }}>
                 {star}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

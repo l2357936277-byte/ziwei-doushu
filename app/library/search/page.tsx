@@ -1,18 +1,25 @@
+'use client';
+
 /**
- * /library/search?q=xxx — 搜索结果页
+ * /library/search?q=xxx — 搜索结果页（静态导出兼容版）
+ * 关键词在运行时从 window.location.search 读取，不依赖服务端 searchParams。
  */
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { searchClassics, getParagraphById } from '@/lib/classics';
+import { searchClassics, getParagraphById, type SearchHit } from '@/lib/classics';
 
-export const metadata = {
-  title: '搜索 · 古籍原典库',
-};
+export default function SearchPage() {
+  const [q, setQ] = useState('');
+  const [hits, setHits] = useState<SearchHit[]>([]);
+  const [ready, setReady] = useState(false);
 
-export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
-  const sp = await searchParams;
-  const q = sp.q?.trim() || '';
-  const hits = q ? searchClassics(q, 50) : [];
+  useEffect(() => {
+    const kw = new URLSearchParams(window.location.search).get('q')?.trim() || '';
+    setQ(kw);
+    setHits(kw ? searchClassics(kw, 50) : []);
+    setReady(true);
+  }, []);
 
   return (
     <div style={{ background: 'var(--bg-page)', minHeight: '100vh' }}>
@@ -42,7 +49,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
           </div>
         </div>
 
-        {hits.length === 0 ? (
+        {!ready ? null : hits.length === 0 ? (
           <div style={{
             background: 'var(--bg-card)',
             padding: '40px 20px',

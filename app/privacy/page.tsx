@@ -1,10 +1,12 @@
+import { BASE_PATH } from '@/lib/basePath';
+
 export const metadata = { title: '隐私政策 · 紫微命盘', description: '紫微命盘隐私政策' };
 
 export default function PrivacyPage() {
   return (
     <>
       <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--bg-0)', borderBottom: '1px solid var(--bdr)', padding: '14px 24px', display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--tx-3)', textDecoration: 'none' }}>
+        <a href={BASE_PATH + "/"} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: 'var(--tx-3)', textDecoration: 'none' }}>
           <span style={{ fontSize: '16px' }}>‹</span>
           <span>返回首页</span>
         </a>
@@ -63,7 +65,7 @@ export default function PrivacyPage() {
       <p>本政策可能不定期更新。重大变更将以显著方式通知。继续使用即表示同意更新后的版本。</p>
 
         <p style={{ marginTop: 48, fontSize: 12, color: 'var(--tx-3)' }}>
-          <a href="/terms" style={{ color: 'var(--ac)' }}>服务条款</a> · <a href="/" style={{ color: 'var(--ac)' }}>返回首页</a>
+          <a href={BASE_PATH + "/terms"} style={{ color: 'var(--ac)' }}>服务条款</a> · <a href={BASE_PATH + "/"} style={{ color: 'var(--ac)' }}>返回首页</a>
         </p>
       </main>
     </>
