@@ -84,7 +84,7 @@ export default function ChatPanel({ chart }: ChatPanelProps) {
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: missing
-          ? '本站在线版未接入 AI 解读接口（需要自建后端 /api/interpret）。排盘、看盘、古籍库全部可用，不受影响。',
+          ? '本站在线版未接入 AI 解读接口（需要自建后端 /api/interpret）。排盘、看盘、古籍库全部可用，不受影响。'
           : '解读请求失败，请稍后重试。',
       }]);
     } finally {
