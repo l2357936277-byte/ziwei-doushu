@@ -47,7 +47,7 @@ export default function ChatPanel({ chart }: ChatPanelProps) {
         body: JSON.stringify({ chart, messages: [...messages, userMsg] }),
       });
 
-      if (res.status === 404) throw new Error('api-missing');
+      if (res.status >= 400 && res.status < 500) throw new Error('api-missing');
       if (!res.ok) throw new Error('请求失败');
       if (!res.body) throw new Error('无响应流');
 
@@ -83,7 +83,9 @@ export default function ChatPanel({ chart }: ChatPanelProps) {
       const missing = e instanceof Error && e.message === 'api-missing';
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: missing ? '开源版不含 AI 解读接口（/api/interpret），需要你自己实现后才能用，详见 README「快速开始」。排盘本身不需要任何 API Key。' : '解读失败，请检查API配置或稍后重试。',
+        content: missing
+          ? '本站在线版未接入 AI 解读接口（需要自建后端 /api/interpret）。排盘、看盘、古籍库全部可用，不受影响。',
+          : '解读请求失败，请稍后重试。',
       }]);
     } finally {
       setLoading(false);
